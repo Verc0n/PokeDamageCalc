@@ -25,8 +25,10 @@ namespace PokemonDamageCalculator.ViewModels
         public virtual List<string> StaticNatures { get; set; }
         public virtual List<string> StaticTypes { get; set; }
         public virtual List<string> StaticItems { get; set; }
+        public virtual List<Status> StaticStatus { get; set; }
 
         public virtual List<string> Abilities { get; set; }
+
 
         public virtual string SelectedPokemon { get; set; }
 
@@ -34,7 +36,8 @@ namespace PokemonDamageCalculator.ViewModels
         public virtual string SelectedType2 { get; set; }
         public virtual string SelectedNature { get; set; }
         public virtual string SelectedAbility { get; set; }
-        public virtual string SelectedStatus { get; set; }
+        public virtual string SelectedItem { get; set; }
+        public virtual Status SelectedStatus { get; set; }
 
 
 
@@ -51,6 +54,7 @@ namespace PokemonDamageCalculator.ViewModels
             StaticNatures = Data.Natures;
             StaticTypes = Data.Types;
             StaticItems = Data.Items;
+            StaticStatus = Helper.GetEnumValues<Status>().ToList();
 
             Abilities = new List<string>();
 
@@ -58,7 +62,8 @@ namespace PokemonDamageCalculator.ViewModels
             SelectedType1 = "";
             SelectedType2 = "";
             SelectedAbility = "";
-
+            SelectedItem = "";
+            SelectedStatus = Status.None;
         }
 
         public async void UpdateData()
@@ -70,7 +75,6 @@ namespace PokemonDamageCalculator.ViewModels
 
             SelectedType1 = p.Types[0].Type.Name.ToUpperFirst();
             SelectedType2 = p.Types.Count() == 2 ? p.Types[1].Type.Name.ToUpperFirst() : "";
-
 
             Abilities = p.Abilities.Select(a => a.Ability.Name).ToList();
             SelectedAbility = Abilities[0];

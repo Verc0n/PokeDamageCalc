@@ -10,14 +10,14 @@
         mc:Ignorable="d"
         DataContext="{dxmvvm:ViewModelSource Type=viewModels:MainWindowVM}"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowVM, IsDesignTimeCreatable=False}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Damage Calc" Height="450" Width="800">
     
     <Window.Resources>
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
 
     <StackPanel Margin="10" HorizontalAlignment="Left">
-        <toolkit:AutoCompleteBox Margin="10" Width="260" HorizontalAlignment="Left"
+        <toolkit:AutoCompleteBox Margin="5" Width="250" HorizontalAlignment="Left"
             ItemsSource="{Binding StaticPokemonNames}" 
             SelectedItem="{Binding SelectedPokemon, Mode=TwoWay}">
             <dxmvvm:Interaction.Behaviors>
@@ -25,28 +25,52 @@
             </dxmvvm:Interaction.Behaviors>
         </toolkit:AutoCompleteBox>
 
-        <StackPanel Margin="10" Orientation="Horizontal">
+        <StackPanel Margin="5" Orientation="Horizontal">
             <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding SelectedType1}"/>
             <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding SelectedType2}"/>
         </StackPanel>
 
 
-        <StackPanel Margin="10" Orientation="Horizontal">
+        <StackPanel Name="Nature" Margin="5" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Width="50"> Nature: </TextBlock>
-            <toolkit:AutoCompleteBox Margin="10" Width="200"
+            <toolkit:AutoCompleteBox  Width="200"
                 ItemsSource="{Binding StaticNatures}"
                 SelectedItem="{Binding SelectedNature, Mode=TwoWay}">
             </toolkit:AutoCompleteBox>
         </StackPanel>
 
-        <StackPanel Margin="10" Orientation="Horizontal">
+        <StackPanel Name="Ability" Margin="5" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Width="50"> Ability:</TextBlock>
-            <ComboBox Margin="10" Width="200" 
+            <ComboBox Width="200" 
                 ItemsSource="{Binding Abilities}"
                 SelectedItem="{Binding SelectedAbility}">
             </ComboBox>
         </StackPanel>
 
+        <StackPanel Name="Item" Margin="5" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Width="50"> Item:</TextBlock>
+            <toolkit:AutoCompleteBox  Width="200"
+                ItemsSource="{Binding StaticItems}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            </toolkit:AutoCompleteBox>
+        </StackPanel>
+
+        <StackPanel Name="Status" Margin="5" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Width="50"> Status:</TextBlock>
+            <ComboBox Width="200" 
+                ItemsSource="{Binding StaticStatus}"
+                SelectedItem="{Binding SelectedStatus}">
+            </ComboBox>
+        </StackPanel>
+
+
+        <StackPanel Name="HP" Margin="5" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Width="50"> Health:</TextBlock>
+            <TextBox Width="50" Text="999" Margin="0,0,3,0" TextAlignment="Right"/>
+            <TextBlock Width="50" Text="/ 999" Margin="3,0,0,0"/>
+            <TextBox Width="50" Text="100"/>
+            <TextBlock Text="%" Margin="2,0,0,0"/>
+        </StackPanel>
 
     </StackPanel>
 </Window>
