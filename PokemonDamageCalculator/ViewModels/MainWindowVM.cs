@@ -1,19 +1,9 @@
 ﻿using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using PokeAPI;
-using System.Threading;
 
 namespace PokemonDamageCalculator.ViewModels
 {
@@ -31,16 +21,8 @@ namespace PokemonDamageCalculator.ViewModels
 
 
         public virtual string SelectedPokemon { get; set; }
-
-        public virtual string SelectedType1 { get; set; }
-        public virtual string SelectedType2 { get; set; }
-        public virtual string SelectedNature { get; set; }
-        public virtual string SelectedAbility { get; set; }
-        public virtual string SelectedItem { get; set; }
-        public virtual Status SelectedStatus { get; set; }
-
-
-
+        
+        public virtual Calcmon CalcMon { get; set; }
 
 
 
@@ -48,7 +30,7 @@ namespace PokemonDamageCalculator.ViewModels
         {
             Data.Init();
             DataFetcher.DataBackend = new VerconHttpBackend();
-
+            CalcMon = new Calcmon();
 
             StaticPokemonNames = Data.Pokemon;
             StaticNatures = Data.Natures;
@@ -59,11 +41,6 @@ namespace PokemonDamageCalculator.ViewModels
             Abilities = new List<string>();
 
             SelectedPokemon = "";
-            SelectedType1 = "";
-            SelectedType2 = "";
-            SelectedAbility = "";
-            SelectedItem = "";
-            SelectedStatus = Status.None;
         }
 
         public async void UpdateData()
@@ -73,11 +50,11 @@ namespace PokemonDamageCalculator.ViewModels
 
             Pokemon p = await DataFetcher.GetNamedApiObject<Pokemon>(SelectedPokemon);
 
-            SelectedType1 = p.Types[0].Type.Name.ToUpperFirst();
-            SelectedType2 = p.Types.Count() == 2 ? p.Types[1].Type.Name.ToUpperFirst() : "";
-
+            CalcMon.BasePokemon = p;
             Abilities = p.Abilities.Select(a => a.Ability.Name).ToList();
-            SelectedAbility = Abilities[0];
+            CalcMon.Ability = Abilities[0];
+
+            this.RaisePropertyChanged(x => x.CalcMon);
         }
 
         public async Task<Pokemon> GetPokemon()
@@ -86,7 +63,5 @@ namespace PokemonDamageCalculator.ViewModels
         }
 
     }
-
-
 
 }

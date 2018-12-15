@@ -30,6 +30,10 @@ namespace PokemonDamageCalculator
             return 1;
         }
 
+        public static int GetBaseStat(this Pokemon p, Stats stat)
+        {
+            return p.Stats[5 - (int)stat].BaseValue;
+        }
 
     }
 

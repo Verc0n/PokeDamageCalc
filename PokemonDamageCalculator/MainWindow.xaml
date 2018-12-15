@@ -26,8 +26,8 @@
         </toolkit:AutoCompleteBox>
 
         <StackPanel Margin="5" Orientation="Horizontal">
-            <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding SelectedType1}"/>
-            <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding SelectedType2}"/>
+            <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding CalcMon.Type1}"/>
+            <ComboBox Width="100" Margin="0,0,10,0" ItemsSource="{Binding StaticTypes}" Text="{Binding CalcMon.Type2}"/>
         </StackPanel>
 
 
@@ -35,7 +35,7 @@
             <TextBlock VerticalAlignment="Center" Width="50"> Nature: </TextBlock>
             <toolkit:AutoCompleteBox  Width="200"
                 ItemsSource="{Binding StaticNatures}"
-                SelectedItem="{Binding SelectedNature, Mode=TwoWay}">
+                SelectedItem="{Binding CalcMon.Nature, Mode=TwoWay}">
             </toolkit:AutoCompleteBox>
         </StackPanel>
 
@@ -43,7 +43,7 @@
             <TextBlock VerticalAlignment="Center" Width="50"> Ability:</TextBlock>
             <ComboBox Width="200" 
                 ItemsSource="{Binding Abilities}"
-                SelectedItem="{Binding SelectedAbility}">
+                SelectedItem="{Binding CalcMon.Ability}">
             </ComboBox>
         </StackPanel>
 
@@ -51,7 +51,7 @@
             <TextBlock VerticalAlignment="Center" Width="50"> Item:</TextBlock>
             <toolkit:AutoCompleteBox  Width="200"
                 ItemsSource="{Binding StaticItems}"
-                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                SelectedItem="{Binding CalcMon.Item, Mode=TwoWay}">
             </toolkit:AutoCompleteBox>
         </StackPanel>
 
@@ -59,7 +59,7 @@
             <TextBlock VerticalAlignment="Center" Width="50"> Status:</TextBlock>
             <ComboBox Width="200" 
                 ItemsSource="{Binding StaticStatus}"
-                SelectedItem="{Binding SelectedStatus}">
+                SelectedItem="{Binding CalcMon.Status}">
             </ComboBox>
         </StackPanel>
 
@@ -72,5 +72,10 @@
             <TextBlock Text="%" Margin="2,0,0,0"/>
         </StackPanel>
 
+        <StackPanel Name="Moves">
+            <UserControl />
+        </StackPanel>
+        
+        
     </StackPanel>
 </Window>
